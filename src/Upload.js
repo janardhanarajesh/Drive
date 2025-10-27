@@ -1,0 +1,82 @@
+import {supabase} from "./supabaseClient";
+import { useState } from "react";
+const Upload=()=>{
+    const [file,setFile]=useState(null);
+    const [preview,setPreview]=useState(null);
+
+    const Upl=async(e)=>{
+        e.preventDefault();
+        const fname=document.getElementById("name").value;
+        const sem=document.getElementById("sem").value;
+        try{
+        if(!file)
+        {
+            alert("please select a file!!");
+            return;
+        }
+       
+        console.log(file.name);
+        const {data:data1,error:error1}=await supabase.storage
+        .from("Drive")
+        .upload(file.name,file);
+        const {data:data2,error:error2}=await supabase.storage
+        .from("preview")
+        .upload(preview.name,preview);
+
+        console.log(data1);
+        if((data1.path===file.name)&&(data2.path===preview.name))
+        {
+
+            const {data:urlData1}=supabase.storage
+            .from("Drive")
+            .getPublicUrl(file.name);
+            const {data:urlData2}=supabase.storage
+            .from("preview")
+            .getPublicUrl(preview.name);
+            console.log(urlData2.publicUrl);
+            const fileurll=urlData1.publicUrl;
+            const fileurl2=urlData2.publicUrl;
+            const { data:dat1, error:err1 } = await supabase
+              .from("file_data")
+              .insert([{ "file_name":fname,"url":fileurll,"sem":sem,"preview":fileurl2}])
+              .select();
+            console.log(dat1);
+            alert("successfully uploded the file!!");
+
+        }
+        else if(error1)
+        {
+            alert(error1);
+            console.log(error1);
+        }
+        }
+        catch(err)
+        {
+            alert(err);
+            console.log(err);
+
+        }        
+    }
+    return(
+<div>
+<div>
+    <center>
+    <form onSubmit={Upl}>
+  <input type="file" name="file" required onChange={(e)=>setFile(e.target.files[0])}/>
+  <br/>
+  <input type="file" name="preview" required onChange={(e)=>setPreview(e.target.files[0])}/>
+  <br/>
+  <input type="text" name="name" required autoComplete="off" id="name" placeholder="file name"/>
+  <br/>
+  <input type="text" name="sem" required autoComplete="off" id="sem" placeholder="sem"/>
+  <br/>
+  <button type="submit">Upload</button>
+</form>
+</center>
+
+</div>
+</div>
+    );
+
+ }
+export default Upload;
