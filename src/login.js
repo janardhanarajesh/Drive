@@ -3,10 +3,7 @@ import { supabase } from "./supabaseClient";
 const Login=()=>{
     const [name,setName]=useState(null);
     const [password,setPassword]=useState(null);
-    const logout=(e)=>{
-        e.preventDefault();
-        localStorage.removeItem("name");
-    }
+   
 const handelSubmit=async(e)=>{
 e.preventDefault();
 try{
@@ -38,9 +35,7 @@ catch(err)
 }
     return(
         <div>
-            <div className="logout">
-            <button onClick={logout}>log out</button>
-            </div>
+            
             <center>
                 <div id="login">
                     <form onSubmit={handelSubmit}>

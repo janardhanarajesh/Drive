@@ -27,17 +27,18 @@ window.location.href="/";
             alert("please select a file!!");
             return;
         }
-       
+        const uniqueFileName = `${Date.now()}_${file.name}`;
+      const uniquePreviewName = `${Date.now()}_${preview.name}`;
         console.log(file.name);
         const {data:data1,error:error1}=await supabase.storage
         .from("Drive")
-        .upload(file.name,file);
+        .upload(uniqueFileName,file);
         const {data:data2,error:error2}=await supabase.storage
         .from("preview")
-        .upload(preview.name,preview);
+        .upload(uniquePreviewName,preview);
 
         console.log(data1);
-        if((data1.path===file.name)&&(data2.path===preview.name))
+        if((data1.path===uniqueFileName)&&(data2.path===uniquePreviewName))
         {
 
             const {data:urlData1}=supabase.storage
@@ -49,12 +50,23 @@ window.location.href="/";
             console.log(urlData2.publicUrl);
             const fileurll=urlData1.publicUrl;
             const fileurl2=urlData2.publicUrl;
+            const {data,error}=await supabase
+.from("file_data")
+.select("*")
+.eq("file_name",fname)
+.single();
+if(data){
+    alert("file name already found!!");
+    return;
+}else{
+
             const { data:dat1, error:err1 } = await supabase
               .from("file_data")
               .insert([{ "file_name":fname,"url":fileurll,"sem":sem,"preview":fileurl2,"uname":uname}])
               .select();
             console.log(dat1);
             alert("successfully uploded the file!!");
+}
 
         }
         else if(error1)

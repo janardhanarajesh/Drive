@@ -18,7 +18,17 @@ window.location.href="/";
     useEffect(()=>{
         colfile();
     },[]);
-
+    const del=async(x,y)=>{
+const {data,error}=await supabase
+.from("file_data")
+.delete()
+.eq("id",x);
+if (error) {
+      console.error("Error deleting:", error.message);
+    } else {
+      alert(`${y} deleted successfully!`);
+    }
+    }
     const colfile=async ()=>{
         const {data,error}=await supabase
         .from("file_data")
@@ -58,6 +68,8 @@ window.location.href="/";
                         <p>{e.file_name}</p>
                         <p>{e.uname}</p>
                         <a href={e.url}><button>view</button></a>
+                        <br/>
+                        <button onClick={()=>del(e.id,e.file_name)}>detele</button>
                         </div>
                     );
                 })}

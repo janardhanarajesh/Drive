@@ -40,7 +40,7 @@
 .files{
   height: 330px;
   width: 200px;
-  background-color: gray;
+  background-color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 3px black;
   float: left;
@@ -50,22 +50,41 @@
 .infile{
   height: 150px;
   width: 100px;
+  border: 1px solid black;
 }
-.files>button{
+
+.files>a>button{
   cursor: pointer;
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 30%;
+  box-shadow: 1px 1px 2px black;
+  border-radius: 3px;
 }
 #login
 {
   height: 200px;
   width: 300px;
   margin-top: 150px;
-  background-color: grey;
+  background-color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 4px black;
+
 }
 
 #login>form>input{
   text-align: center;
+}
+#login>form>input[type="submit"]
+{
+  background-color: white;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  height: 25px;
+  border-radius: 3px;
+  width: 30%;
+
 }
 .logout{
   height: 30px;
@@ -73,14 +92,58 @@
 }
 .logout>button{
   float: right;
+  width: 100%;
+  cursor: pointer;
+  height: 30px;
+  font-size: 120%;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px black;
 }
 #upload{
   height: 350px;
   width: 300px;
-  background-color: gray;
+  background-color: white ;
    border-radius: 10px;
    box-shadow: 1px 1px 5px black;
 }
+#upload>form>button{
+  background-color: white;
+  border: none;
+  box-shadow: 1px 1px 2px black;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 30px;
+  margin-top: 30px;
+  width: 30%;
+}
+
 #upload>form>input{
   text-align: center;
+}
+#nav{
+height: 30px;
+width: 100%;
+background-color: white;
+box-shadow: 1px 1px 2px black;
+text-align: center;
+}
+#nav1{
+  height: 30px;
+ 
+  width: 100%;
+}
+.nav2{
+  height: 30px;
+  width: 33.3%;
+  float: left;
+  text-align: center;
+   color: black;
+  text-decoration: none;
+  font-weight: bold;
+ 
+}
+.nav2>a{
+  text-decoration: none;
+  color: black;
+  font-size: 120%;
 }
