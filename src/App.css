@@ -38,8 +38,8 @@
 }
 
 .files{
-  height: 300px;
-  width: 150px;
+  height: 330px;
+  width: 200px;
   background-color: gray;
   border-radius: 10px;
   box-shadow: 1px 1px 3px black;
@@ -53,4 +53,34 @@
 }
 .files>button{
   cursor: pointer;
+}
+#login
+{
+  height: 200px;
+  width: 300px;
+  margin-top: 150px;
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow: 1px 1px 4px black;
+}
+
+#login>form>input{
+  text-align: center;
+}
+.logout{
+  height: 30px;
+
+}
+.logout>button{
+  float: right;
+}
+#upload{
+  height: 350px;
+  width: 300px;
+  background-color: gray;
+   border-radius: 10px;
+   box-shadow: 1px 1px 5px black;
+}
+#upload>form>input{
+  text-align: center;
 }
